@@ -23,8 +23,11 @@ export function useVoiceChat(userId) {
   const connect = useCallback(() => {
     if (wsRef.current?.readyState === WebSocket.OPEN) return;
 
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const wsUrl = `${protocol}//${window.location.host}/ws/chat/${userId}`;
+    // Use environment variable in production, localhost in development
+    const apiUrl = import.meta.env.VITE_API_URL || '';
+    const wsProtocol = apiUrl.startsWith('https') ? 'wss:' : 'ws:';
+    const wsHost = apiUrl ? apiUrl.replace(/^https?:\/\//, '') : window.location.host;
+    const wsUrl = `${wsProtocol}//${wsHost}/ws/chat/${userId}`;
     
     wsRef.current = new WebSocket(wsUrl);
     

@@ -12,7 +12,8 @@ export function TrainingLog({ userId, functionCalls }) {
 
   const fetchRuns = async () => {
     try {
-      const response = await fetch(`/api/users/${userId}/runs`);
+      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const response = await fetch(`${apiUrl}/api/users/${userId}/runs`);
       if (response.ok) {
         const data = await response.json();
         setRuns(data);
