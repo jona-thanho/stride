@@ -96,10 +96,10 @@ function App() {
               />
               
               <p className="text-sm text-gray-500">
-                {!isConnected && 'Connecting...'}
-                {isConnected && !isListening && !isSpeaking && 'Tap to talk'}
-                {isListening && 'Listening... tap to send'}
-                {isSpeaking && 'Stride is speaking...'}
+                {!isConnected ? 'Connecting...' :
+                isSpeaking ? 'Stride is speaking...' :
+                isListening ? 'Listening... tap to send' :
+                'Tap to talk'}
               </p>
             </div>
           </div>

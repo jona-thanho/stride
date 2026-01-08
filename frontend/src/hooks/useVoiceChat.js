@@ -69,7 +69,7 @@ export function useVoiceChat(userId) {
   const handleMessage = useCallback((data) => {
     switch (data.type) {
       case 'user_transcript':
-        setUserTranscript(data.text);
+        setUserTranscript('');
         setMessages(prev => [...prev, { role: 'user', content: data.text }]);
         break;
       
@@ -152,6 +152,7 @@ export function useVoiceChat(userId) {
           channelCount: 1,
           echoCancellation: true,
           noiseSuppression: true,
+          autoGainControl: true,
         } 
       });
       
@@ -201,12 +202,7 @@ export function useVoiceChat(userId) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop());
       mediaStreamRef.current = null;
     }
-    
-    // Signal to commit audio buffer
-    if (wsRef.current?.readyState === WebSocket.OPEN) {
-      wsRef.current.send(JSON.stringify({ type: 'commit_audio' }));
-    }
-    
+
     setIsListening(false);
   }, []);
 

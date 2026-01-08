@@ -352,10 +352,13 @@ async def websocket_chat(websocket: WebSocket, user_id: int):
                         
                         # Handle errors
                         elif event_type == "error":
-                            await websocket.send_text(json.dumps({
-                                "type": "error",
-                                "message": event.get("error", {}).get("message", "Unknown error")
-                            }))
+                            error_msg = event.get("error", {}).get("message", "Unknown error")
+                            # Don't show buffer too small errors to user
+                            if "buffer too small" not in error_msg.lower():
+                                await websocket.send_text(json.dumps({
+                                    "type": "error",
+                                    "message": error_msg
+                                }))
                 
                 except Exception as e:
                     print(f"OpenAI WebSocket error: {e}")
