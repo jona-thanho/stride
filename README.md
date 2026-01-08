@@ -12,6 +12,17 @@ I run 30+ miles a week and lead UCSD's Strides Running Club (largest running clu
 
 The core insight: **running is already a voice-friendly activity**. You can talk while running (if you're going easy enough). You want hands-free interaction post-run. And the data you're logging is conversational - "I did 6 miles today, felt pretty good but my calf was tight."
 
+## How to Use
+
+1. Click the microphone button
+2. Say something like:
+   - "I just ran 5 miles in 45 minutes"
+   - "What's the weather like?"
+   - "How's my week going?"
+   - "What should I run tomorrow?"
+   - "Set a goal for a half marathon on March 15th"
+3. See your training log update in real-time
+
 ## Product Decisions
 
 ### Opinionated Scope
@@ -61,9 +72,9 @@ I used function calling not just to retrieve data, but to take meaningful action
 ### Tech Stack
 - **Frontend**: React + Vite + Tailwind CSS
 - **Backend**: Python + FastAPI
-- **Database**:  SQLite for local dev
+- **Database**:  SQLite
 - **Voice**: OpenAI Realtime API (speech-to-speech)
-- **Deployment**: Railway / Fly.io
+- **Deployment**: Railway
 
 ### Key Technical Decisions
 
