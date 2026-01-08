@@ -4,7 +4,7 @@ A voice-first AI running coach that helps you log training, plan workouts, and p
 
 ## Demo
 
-🔗 [Live Demo](MY_DEPLOYED_URL_HERE)
+🔗 [Live Demo](https://stride-coach.up.railway.app/)
 
 ## Why I Built This
 
